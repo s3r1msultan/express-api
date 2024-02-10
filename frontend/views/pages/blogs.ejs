@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./../blocks/head.ejs') %>
+  <body>
+    <%- include('./../blocks/header.ejs') %>
+    <body>
+      <div class="container mt-5">
+        <h2>All Blog Posts</h2>
+        <div class="row">
+          <% blogs.forEach(function(blog){ %>
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.content.substring(0, 100) %>...</p>
+                <a
+                  href="/blogs/<%= blog._id %>"
+                  class="btn btn-primary"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </body>
+    <%- include('./../blocks/footer.ejs') %>
+  </body>
+</html>
