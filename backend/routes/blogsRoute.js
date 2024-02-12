@@ -3,17 +3,26 @@ import { Blog } from "../models/blog.js";
 
 const blogsRoute = Router();
 
+blogsRoute.get("/post", (req, res) => {
+  if (req.method !== "GET") {
+    res.status(405).send("Method not allowed");
+  }
+  res.render("post");
+});
+
 blogsRoute.post("/", (req, res) => {
+  console.log(req.body);
   const blog = new Blog(req.body);
   blog
     .save()
     .then((result) => {
-      console.log(result);
-      res.status(201).send(result);
+      res.status(201);
+      res.render("post", { status: 201 });
     })
     .catch((err) => {
       console.error(err);
-      res.status(400).send(err);
+      res.status(400);
+      res.render("post", { status: 400 });
     });
 });
 
@@ -35,7 +44,8 @@ blogsRoute.get("/:id", (req, res) => {
           message: "Blog is not found with id " + req.params.id,
         });
       }
-      res.status(200).send(blog);
+      res.status(200);
+      res.render("blog", { blog: blog });
     })
     .catch((error) => {
       return res.status(500).send(error);

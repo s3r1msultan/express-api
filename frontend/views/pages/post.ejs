@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./../blocks/head.ejs', {title: "Post a blog"}) %>
+  <body>
+    <%- include('./../blocks/header.ejs') %>
+
+    <div
+      class="container my-5"
+      style="height: 64vh"
+    >
+      <h2 class="mb-3 text-bold text-center">Post a creative and useful blog</h2>
+
+      <form
+        action="http://localhost:3000/blogs"
+        method="post"
+        class="d-flex flex-column align-items-center"
+      >
+        <div class="form-group form-row mb-4 col-6 fs-4">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control fs-4"
+            name="title"
+            id="title"
+            placeholder="Fantastic utopian book 1984"
+          />
+        </div>
+        <div class="form-group form-row mb-4 col-6 fs-4">
+          <label for="author">Author</label>
+          <input
+            type="text"
+            class="form-control fs-4"
+            name="author"
+            id="author"
+            placeholder="George Orwell"
+          />
+        </div>
+        <div class="form-group form-row mb-4 col-6 fs-4">
+          <label for="content">Content</label>
+          <textarea
+            type="text"
+            class="form-control fs-4"
+            name="content"
+            id="content"
+            placeholder="Here should be content about utopian world"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary fs-4"
+        >
+          Post
+        </button>
+      </form>
+    </div>
+    <%- include('./../blocks/footer.ejs') %>
+  </body>
+</html>
