@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('./../blocks/head.ejs', {title: "Edit the blog post"}) %>
+	<body>
+		<%- include('./../blocks/header.ejs') %>
+
+		<div class="container my-5" style="height: 64vh">
+			<h2 class="mb-3 text-bold text-center">Edit the blog post</h2>
+
+			<form id="edit" class="d-flex flex-column align-items-center">
+				<div class="form-group form-row mb-4 col-6 fs-4">
+					<label for="title">Title</label>
+					<input
+						type="text"
+						class="form-control fs-4"
+						name="title"
+						id="title"
+						value="<%- blog.title %>"
+						placeholder="Fantastic utopian book 1984" />
+				</div>
+				<div class="form-group form-row mb-4 col-6 fs-4">
+					<label for="author">Author</label>
+					<input
+						type="text"
+						class="form-control fs-4"
+						name="author"
+						id="author"
+						value="<%- blog.author %>"
+						placeholder="George Orwell" />
+				</div>
+				<div class="form-group form-row mb-4 col-6 fs-4">
+					<label for="content">Content</label>
+					<textarea
+						type="text"
+						class="form-control fs-4"
+						name="content"
+						id="content"
+						placeholder="Here should be content about utopian world">
+<%- blog.content %></textarea
+					>
+				</div>
+				<button type="submit" class="btn btn-primary fs-4">Edit</button>
+			</form>
+		</div>
+		<%- include('./../blocks/footer.ejs') %>
+		<script>
+			document.getElementById("edit").addEventListener("submit", (e) => {
+				e.preventDefault();
+				const formData = new FormData(document.getElementById("edit"));
+				const object = {};
+				formData.forEach(function (value, key) {
+					object[key] = value;
+				});
+				// object["modified_at"] = Date.now();
+				const json = JSON.stringify(object);
+				fetch(window.location.href.replace("/edit", ""), {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: json,
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((err) => console.log(err));
+			});
+		</script>
+	</body>
+</html>

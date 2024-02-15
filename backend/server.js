@@ -20,6 +20,11 @@ mongoose
   .catch((err) => console.error(err));
 
 app.use("/blogs", blogsRoute);
+app.get("/", (req ,res)=>{
+  if(req.method !== "GET") 
+    res.status(405).send("Method not allowed");
+  res.render("index")
+})
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("server listening on port " + process.env.PORT || 3000);

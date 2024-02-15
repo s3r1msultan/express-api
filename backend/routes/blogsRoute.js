@@ -67,9 +67,28 @@ blogsRoute.delete("/:id", (req, res) => {
     });
 });
 
+blogsRoute.get("/:id/edit", (req, res) => {
+  if(req.method !== "GET") 
+    res.send(405).send("Method not allowed")
+  Blog.findById(req.params.id)
+    .then((blog) => {
+      if (!blog) {
+        return res.status(404).send({
+          message: "Blog is not found with id " + req.params.id,
+        });
+      }
+      res.status(200);
+      res.render("edit", { blog: blog });
+    })
+    .catch((error) => {
+      return res.status(500).send(error);
+    });
+})
+
 blogsRoute.put("/:id", (req, res) => {
   Blog.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((blog) => {
+      console.log(blog.author)
       if (!blog) {
         return res.status(404).send({
           message: "Blog is not found with id " + req.params.id,

@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./../blocks/head.ejs') %>
-  <body>
-    <%- include('./../blocks/header.ejs') %> <%- include('./../blocks/footer.ejs') %>
-  </body>
+	<%- include('./../blocks/head.ejs', {title: "Home page"}) %>
+	<body>
+		<%- include('./../blocks/header.ejs') %>
+		<main style="height: 69vh">
+			<div class="container">
+				<div class="text-center">
+					<h1 class="display-3 fw-bold my-4">Home Page</h1>
+					<h3>Welcome!</h3>
+					<p>
+						This project serves as the second assignment for the
+						<strong>WEB Technologies 2</strong> course at
+						<strong>Astana IT University</strong>.
+					</p>
+					<p>
+						This web project is designed using <strong>Bootstrap</strong> for a
+						responsive and user-friendly layout. It comprises three main
+						sections: the <strong>"Home"</strong> page providing an overview of
+						the project, the <strong>"Cats"</strong> page featuring two APIs for
+						generating random cat photos and facts, and the
+						<strong>"Weather</strong>" page where users can retrieve weather
+						information for any city using the OpenWeatherAPI.
+					</p>
+					<p>
+						The application utilizes three APIs:
+						<strong>OpenWeatherMap</strong> for weather data,
+						<strong>QuotesOnDesignAPI</strong> for random cat photos, and
+						<strong>meowfacts</strong> for interesting cat facts. These APIs are
+						integrated to enhance the user experience by providing dynamic
+						content.
+					</p>
+					<p>
+						The backend is built with <strong>Express</strong>, and
+						<strong>EJS</strong> is used for templating, ensuring efficient
+						server-side rendering and a seamless interaction for users.
+					</p>
+				</div>
+			</div>
+		</main>
+		<%- include('./../blocks/footer.ejs') %>
+	</body>
 </html>
